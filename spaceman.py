@@ -89,12 +89,13 @@ def spaceman(secret_word):
 
     #TODO: Ask the player to guess one letter per round and check that it is only one letter
     print("Guess one letter per round!")
-    guesses_left = 7
+    attempts = 7
     # guessed_letter = input()  # weird to me
 
-    while play_game and is_word_guessed == False and attempts > 0:
+    while play_game and is_word_guessed(secret_word,letters_guessed) == False and attempts > 0:
         guess = input("Guess a letter: ")
         guess.lower()
+
         if len(guess) != 1: # letter guessed has to be 1
             print("Please only guess one letter.")
 
@@ -103,19 +104,20 @@ def spaceman(secret_word):
             if guess in letters_guessed:
                 print("You already guessed that. Please guess again.")
 
+
             else:
                 letters_guessed.append(guess)
                 print('Correct!' + get_guessed_word(secret_word, letters_guessed))
         else:
-            # if len(guess) != 1:
-            #     print("Please only guess one letter.")
+            if len(guess) != 1:
+                print("Please only guess one letter.")
             if guess in letters_guessed:
                 print("You already guessed that. Please guess again.")
             else:
                 letters_guessed.append(guess)
-                guesses_left -= 1
+                attempts -= 1
                 print('Incorrect!' + get_guessed_word(secret_word, letters_guessed))
-                # print("You have {} guesses left.".format(guesses_left))
+                print("You have {} guesses left.".format(attempts))
 
 
 
