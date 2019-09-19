@@ -165,3 +165,9 @@ def test_3():
     assert is_word_guessed("tiger", ["t", "i", "g"]) == False
 
 test_3()
+
+def test_4():
+    assert is_word_guessed("tiger", ["t", "i", "g", "e", "r"]) == True
+
+test_4()
+
